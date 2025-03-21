@@ -1,0 +1,96 @@
+.navbar-size {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .brand-logo {
+    margin-right: 2rem;
+  }
+  
+  .user-image-size {
+    height: 100px;
+    margin: 4px 0;
+    border-radius: 50%;
+  }
+  
+  #nav-mobile {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  #nav-mobile li {
+    margin-right: 2rem;
+  }
+  
+  #nav-mobile a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  #nav-mobile a:hover {
+    color: #ccc;
+  }
+  
+  .nav-search {
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+  }
+  
+  .nav-search input[type="search"] {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    width: 200px;
+  }
+  
+  .nav-search button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+.flow-text {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 110%;
+    margin: 0.83em 0;
+    color: #000;
+    }
+    .main-body {
+    background-color: #d6d3d3;
+    color: white;
+    height: auto;
+    }
+    .materialboxed-image {
+    width: 100%;
+    height: 500px;
+    
+    }
+    .click-me-button {
+    background-color: #250f10;
+    margin-top: 10px;
+    }       
+
+    .card-reveal {
+        background-color: lightgray;
+        color: black;
+      }
+
+      #card-section {
+        display: flex;
+       size-adjust: 50%;
+        justify-content: center !important;
+        
+      }
+      
