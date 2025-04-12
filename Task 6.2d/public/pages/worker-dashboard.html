@@ -1,0 +1,132 @@
+<!-- public/pages/worker-dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Worker Dashboard - Community Task Board</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">Worker Dashboard</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/pages/landing.html">Home</a></li>
+        <li><a href="/pages/login.html">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>Available Tasks</h2>
+    <div class="row">
+      <div class="input-field col s8">
+        <input id="filter_input" type="text">
+        <label for="filter_input">Filter tasks by title/description</label>
+      </div>
+      <div class="col s4">
+        <button id="filter_btn" class="btn">Filter</button>
+      </div>
+    </div>
+    <div id="worker-task-list" class="row">
+      <!-- Worker tasks will load here -->
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="container">
+      © 2025 Community Task Board
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      loadWorkerTasks();
+      $('#filter_btn').click(function(){
+         const filterVal = $('#filter_input').val();
+         loadWorkerTasks(filterVal);
+      });
+    });
+    
+    function loadWorkerTasks(filter = ""){
+      const token = localStorage.getItem('jwtToken');
+      $.ajax({
+        method: "GET",
+        url: "/api/tasks",
+        headers: { 'Authorization': `Bearer ${token}` },
+        success: function(tasks){
+          $('#worker-task-list').empty();
+          // Client-side filter based on task title or description
+          tasks.filter(task => 
+            task.title.toLowerCase().includes(filter.toLowerCase()) ||
+            task.description.toLowerCase().includes(filter.toLowerCase())
+          ).forEach(task => {
+            $('#worker-task-list').append(`
+              <div class="col s12 m6">
+                <div class="card">
+                  <div class="card-content">
+                    <span class="card-title">${task.title}</span>
+                    <p>${task.description}</p>
+                    <p>Due: ${new Date(task.dueDate).toLocaleDateString()}</p>
+                    <p>Status: ${task.status}</p>
+                    <p>Assigned to: ${task.assignedTo ? task.assignedTo.username : 'Unassigned'}</p>
+                  </div>
+                  <div class="card-action">
+                    <a href="#" onclick="acceptTask('${task._id}')">Accept</a>
+                    <a href="#" onclick="updateStatus('${task._id}', 'Working')">Working</a>
+                    <a href="#" onclick="updateStatus('${task._id}', 'Completed')">Completed</a>
+                  </div>
+                </div>
+              </div>
+            `);
+          });
+        },
+        error: function(err){ console.error('Error loading tasks', err); }
+      });
+    }
+    
+    // Function to accept a task (assign to the logged-in worker)
+    function acceptTask(id){
+      const token = localStorage.getItem('jwtToken');
+      const user = JSON.parse(localStorage.getItem('user'));
+      $.ajax({
+         method: "PUT",
+         url: "/api/tasks/" + id,
+         headers: { 'Authorization': `Bearer ${token}` },
+         contentType: "application/json",
+         data: JSON.stringify({ assignedTo: user.id }),
+         success: function(){
+           alert('Task accepted');
+           loadWorkerTasks();
+         },
+         error: function(err){
+           alert('Error accepting task');
+         }
+      });
+    }
+    
+    // Function to update task status
+    function updateStatus(id, status){
+      const token = localStorage.getItem('jwtToken');
+      $.ajax({
+         method: "PUT",
+         url: "/api/tasks/" + id,
+         headers: { 'Authorization': `Bearer ${token}` },
+         contentType: "application/json",
+         data: JSON.stringify({ status }),
+         success: function(){
+           alert('Status updated to ' + status);
+           loadWorkerTasks();
+         },
+         error: function(err){
+           alert('Error updating status');
+         }
+      });
+    }
+  </script>
+</body>
+</html>

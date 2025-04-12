@@ -1,0 +1,140 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+.brand-logo {
+  font-size: 1.5rem;
+}
+
+.nav-wrapper {
+  background-color: #5cb8bb;
+}
+/* Center welcome section content (landing html)*/ 
+.welcome-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
+}
+.welcome-section p {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+.welcome-section .btn-large {
+  margin: 0 auto;
+}
+/*                             */
+
+
+
+
+
+  
+ 
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  /* Center the main container and limit its width */
+.container {
+  max-width: auto; /* Set to auto to center the container */
+  margin: 0 auto;
+}
+
+/* New class for form and modal containers */
+.form-container {
+  
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;  /* Optional: Add some inner padding */
+  background: #ffffff;  /* Optional: add a background */
+  border-radius: 4px;     /* Optional: smooth out the corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Optional: add a slight shadow */
+}
+
+/* Increase spacing between input fields */
+.form-field-spacing {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Change focus color for text fields to match your brand (here #1976d2) */
+input[type="text"]:focus:not([readonly]) + label,
+input[type="email"]:focus:not([readonly]) + label,
+input[type="password"]:focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: #1976d2;
+}
+
+input[type="text"]:focus:not([readonly]),
+input[type="email"]:focus:not([readonly]),
+input[type="password"]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #1976d2 !important;
+  box-shadow: 0 1px 0 0 #1976d2 !important;
+}
+
+/* If you are using placeholder attributes explicitly, style them: */
+::placeholder {
+  color: #999;
+  opacity: 1; /* ensures the color is not faded */
+}
+/* Style the submit button */
+.btn.submit-btn {
+  background-color: #1976d2 !important; /* or any preferred color */
+  display: block;
+  margin: 20px auto; /* center horizontally */
+  width: auto;       /* or you can specify a width if you prefer */
+}
+.add-task-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.container {
+  flex: 1;
+}
+
+/* Footer styling */
+footer {
+  background-color: #5cb8bb !important; /* Replace with your desired color */
+  color: #000000; /* Optional: Change text color for better contrast */
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* landing.css */
+
+/* Navigation Bar Customization */
+.nav-custom {
+  background-color: #1976d2;  /* You can adjust this color */
+}
+
+/* Features Section */
+.feature-section {
+  padding: 60px 0;
+}
+.feature-section .card-panel {
+  padding: 20px;
+  margin-bottom: 30px;
+}
+.feature-section i {
+  color: #19d2c3;
+  margin-bottom: 10px;
+}
+
+/* Scoped styles for login page form centering */
+#login-page .login-form-wrapper {
+  /* Use Flexbox to center content within this wrapper */
+  display: flex;
+  justify-content: center;  /* center horizontally */
+  align-items: center;      /* center vertically */
+  min-height: calc(100vh - 120px); /* Adjust this value if needed to account for your nav and footer heights */
+  padding: 20px;  /* optional, for spacing */
+}
+
+/* Existing .form-container rules remain for styling the form itself */
+/* (No changes needed here if .form-container styles look good) */

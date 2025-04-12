@@ -1,0 +1,281 @@
+<!-- public/pages/admin-dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - Community Task Board</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">Admin Dashboard</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/pages/landing.html">Home</a></li>
+        <li><a href="/pages/login.html">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>Manage Tasks</h2>
+    <div id="admin-task-list" class="row">
+      <!-- Tasks will be loaded here for admin to manage -->
+    </div>
+    
+    <!-- Add Task Button -->
+    <div class="add-task-btn-container">
+    <a class="waves-effect waves-light btn modal-trigger" href="#modalAddTask">Add New Task</a>
+  </div>
+  </div>
+
+  <!-- Add Task Modal -->
+  <div id="modalAddTask" class="modal">
+    <div class="modal-content form-container">
+      <h4>Add Task</h4>
+      <div class="row">
+        <form id="addTaskForm" class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="task_title" type="text" class="validate">
+              <label for="task_title">Title</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="task_description" class="materialize-textarea"></textarea>
+              <label for="task_description">Description</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="task_dueDate" type="date" class="validate">
+              <label for="task_dueDate">Due Date</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="task_assignedTo" type="text" class="validate">
+              <label for="task_assignedTo">Assigned To (Email or Username)</label>
+
+            </div>
+          </div>
+          <button class="btn waves-effect waves-light" type="submit">Submit
+            
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+  <!-- Edit Task Modal -->
+<div id="editTaskModal" class="modal">
+  <div class="modal-content form-container">
+    <h4>Edit Task</h4>
+    <div class="row">
+      <form id="editTaskForm" class="col s12">
+        <!-- Hidden field to store task id (optional, or use modal data attribute) -->
+        <input type="hidden" id="edit_task_id">
+        
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="edit_task_title" type="text" class="validate">
+            <label for="edit_task_title">Title</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="edit_task_description" class="materialize-textarea"></textarea>
+            <label for="edit_task_description">Description</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="edit_task_dueDate" type="date" class="validate">
+            <label for="edit_task_dueDate">Due Date</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="edit_task_assignedTo" type="text" class="validate">
+            <label for="edit_task_assignedTo">Assigned To (Email or Username)</label>
+
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit">Update
+          
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+</div>
+
+
+<footer class="page-footer">
+  <div class="container">
+    © 2025 Community Task Board
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.modal').modal();
+      loadAdminTasks();
+    });
+    
+    function loadAdminTasks(){
+      const token = localStorage.getItem('jwtToken');
+      $.ajax({
+        method: "GET",
+        url: "/api/tasks",
+        headers: { 'Authorization': `Bearer ${token}` },
+        success: function(tasks){
+          $('#admin-task-list').empty();
+          tasks.forEach(task => {
+            $('#admin-task-list').append(`
+              <div class="col s12 m6 l4">
+                <div class="card">
+                  <div class="card-content">
+                    <span class="card-title">${task.title}</span>
+                    <p>${task.description}</p>
+                    <p>Due: ${new Date(task.dueDate).toLocaleDateString()}</p>
+                    <p>Status: ${task.status}</p>
+                    <p>Assigned to: ${task.assignedTo ? task.assignedTo.username : 'Unassigned'}</p>
+                  </div>
+                  <div class="card-action">
+                    <a href="#" onclick="editTask('${task._id}')">Edit</a>
+                    <a href="#" onclick="deleteTask('${task._id}')">Delete</a>
+                    <a href="#" onclick="updateStatus('${task._id}')">Completed</a>
+                    
+                  </div>
+                </div>
+              </div>
+            `);
+          });
+        },
+        error: function(err){ console.error('Error loading tasks', err); }
+      });
+    }
+    
+    // Function to open and pre-fill the Edit Modal for a given task
+function editTask(taskId) {
+  const token = localStorage.getItem('jwtToken');
+  $.ajax({
+    method: "GET",
+    url: "/api/tasks/" + taskId,
+    headers: { 'Authorization': `Bearer ${token}` },
+    success: function(task) {
+      // Pre-fill modal fields with task data
+      $('#edit_task_title').val(task.title);
+      $('#edit_task_description').val(task.description);
+      // Format due date to 'YYYY-MM-DD'
+      if(task.dueDate) {
+        const dueDateStr = new Date(task.dueDate).toISOString().split('T')[0];
+        $('#edit_task_dueDate').val(dueDateStr);
+      } else {
+        $('#edit_task_dueDate').val('');
+      }
+      // If assignedTo exists, set its ID; else empty
+      $('#edit_task_assignedTo').val(task.assignedTo ? task.assignedTo._id : '');
+      // Option 1: Store task id in a hidden field
+      $('#edit_task_id').val(task._id);
+      // Option 2: Set as data attribute on the modal
+      $('#editTaskModal').data('taskId', task._id);
+      
+      // Update Materialize labels (if needed)
+      M.updateTextFields();
+      // Open the modal
+      $('#editTaskModal').modal('open');
+    },
+    error: function(err) {
+      alert('Error fetching task details.');
+      console.error(err);
+    }
+  });
+}
+$('#editTaskForm').submit(function(e) {
+  e.preventDefault();
+  const token = localStorage.getItem('jwtToken');
+  // Option: Retrieve the task ID either from the hidden field or the modal's data attribute
+  const taskId = $('#edit_task_id').val() || $('#editTaskModal').data('taskId');
+  
+  // Gather updated data from the form
+  const updatedTask = {
+    title: $('#edit_task_title').val(),
+    description: $('#edit_task_description').val(),
+    dueDate: $('#edit_task_dueDate').val(),  // date as a string (YYYY-MM-DD)
+    assignedTo: $('#edit_task_assignedTo').val() || undefined
+  };
+  
+  $.ajax({
+    method: "PUT",
+    url: "/api/tasks/" + taskId,
+    headers: { 'Authorization': `Bearer ${token}` },
+    contentType: "application/json",
+    data: JSON.stringify(updatedTask),
+    success: function() {
+      alert('Task updated successfully.');
+      $('#editTaskModal').modal('close');
+      loadAdminTasks();
+    },
+    error: function(err) {
+      console.error('Error updating task:', err.responseText);
+      alert('Error updating task: ' + err.responseText);
+    }
+  });
+});
+
+    
+    function deleteTask(id){
+       if(confirm("Are you sure you want to delete this task?")){
+         const token = localStorage.getItem('jwtToken');
+         $.ajax({
+            method: "DELETE",
+            url: "/api/tasks/" + id,
+            headers: { 'Authorization': `Bearer ${token}` },
+            success: function(){
+              alert('Task deleted successfully.');
+              loadAdminTasks();
+            },
+            error: function(err){ alert('Error deleting task'); }
+         });
+       }
+    }
+    
+    $('#addTaskForm').submit(function(e){
+      e.preventDefault();
+      const token = localStorage.getItem('jwtToken');
+      const task = {
+         title: $('#task_title').val(),
+         description: $('#task_description').val(),
+         dueDate: $('#task_dueDate').val(),
+         assignedTo: $('#task_assignedTo').val() // this should be a valid user ID
+      };
+      $.ajax({
+         method: "POST",
+         url: "/api/tasks",
+         headers: { 'Authorization': `Bearer ${token}` },
+         contentType: "application/json",
+         data: JSON.stringify(task),
+         success: function(){
+           alert('Task created successfully.');
+           $('#modalAddTask').modal('close');
+           loadAdminTasks();
+         },
+         error: function(err){
+           alert('Error creating task');
+         }
+      });
+    });
+  </script>
+</body>
+</html>

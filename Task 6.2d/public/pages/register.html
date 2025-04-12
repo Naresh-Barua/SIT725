@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Register - Community Task Board</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body id="login-page">
+  <nav>
+    <div class="nav-wrapper">
+      
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/pages/landing.html">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Add a main tag to wrap the content -->
+  <div class="login-form-wrapper">
+  <div class="container">
+    <div class="form-container">
+      <div class="row">
+        <h4>Register</h4>
+        <form id="registerForm" class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="register_username" type="text" class="validate">
+              <label for="register_username">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="register_email" type="email" class="validate">
+              <label for="register_email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="register_password" type="password" class="validate">
+              <label for="register_password">Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <select id="register_role">
+                <option value="worker" selected>Worker</option>
+                <option value="admin">Admin</option>
+              </select>
+              <label>Role</label>
+            </div>
+          </div>
+          <button class="btn waves-effect waves-light submit-btn" type="submit">Register
+            
+          </button>
+        </form>
+      </div>
+      <div class="row">
+        <div class="col s12 center-align">
+          <p>Already have an account? <a href="/pages/login.html">Login here</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div><!-- End of form container -->
+  
+  <footer class="page-footer">
+    <div class="container">
+      © 2025 Community Task Board
+    </div>
+  </footer>
+
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+ <script src="../js/scripts.js"></script>
+ <script>
+   $(document).ready(function(){
+     $('select').formSelect();
+     $('#registerForm').submit(function(e) {
+       e.preventDefault();
+       const username = $('#register_username').val();
+       const email = $('#register_email').val();
+       const password = $('#register_password').val();
+       const role = $('#register_role').val();
+       $.ajax({
+         method: "POST",
+         url: "/api/auth/register",
+         contentType: "application/json",
+         data: JSON.stringify({ username, email, password, role }),
+         success: function(data) {
+           alert('Registration Successful');
+           window.location.href = "/pages/login.html";
+         },
+         error: function(err) {
+           alert('Registration Failed');
+         }
+       });
+     });
+   });
+ </script>
+</body>
+</html>
