@@ -1,0 +1,267 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+.brand-logo {
+  font-size: 1.5rem;
+}
+
+.nav-wrapper {
+  background-color: #178841;
+}
+/* Center welcome section content (landing html)*/ 
+.welcome-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
+}
+.welcome-section p {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+.welcome-section .btn-large {
+  margin: 0 auto;
+  background-color: #178841;
+}
+/*                             */
+
+
+#worker-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#worker-list .collection-item {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+  
+ 
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  /* Center the main container and limit its width */
+.container {
+  max-width: auto; /* Set to auto to center the container */
+  margin: 0 auto;
+}
+
+/* New class for form and modal containers */
+.form-container {
+  
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;  /* Optional: Add some inner padding */
+  background: #ffffff;  /* Optional: add a background */
+  border-radius: 4px;     /* Optional: smooth out the corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Optional: add a slight shadow */
+}
+
+/* Increase spacing between input fields */
+.form-field-spacing {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Change focus color for text fields to match your brand (here #1976d2) */
+input[type="text"]:focus:not([readonly]) + label,
+input[type="email"]:focus:not([readonly]) + label,
+input[type="password"]:focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: #1976d2;
+}
+
+input[type="text"]:focus:not([readonly]),
+input[type="email"]:focus:not([readonly]),
+input[type="password"]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #1976d2 !important;
+  box-shadow: 0 1px 0 0 #1976d2 !important;
+}
+
+/* If you are using placeholder attributes explicitly, style them: */
+::placeholder {
+  color: #999;
+  opacity: 1; /* ensures the color is not faded */
+}
+/* Style the submit button */
+.btn.submit-btn {
+  background-color: #1976d2 !important; /* or any preferred color */
+  display: block;
+  margin: 20px auto; /* center horizontally */
+  width: auto;       /* or you can specify a width if you prefer */
+}
+.add-task-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  color: #178841;
+}
+.container {
+  flex: 1;
+}
+
+/* Footer styling */
+footer {
+  background-color: #ffffff !important; /* Replace with your desired color */
+  color: #000000 !important; /* Optional: Change text color for better contrast */
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* landing.css */
+
+/* Navigation Bar Customization */
+.nav-custom {
+  background-color: #1976d2;  /* You can adjust this color */
+}
+
+/* Features Section */
+.feature-section {
+  padding: 60px 0;
+}
+.feature-section .card-panel {
+  padding: 20px;
+  margin-bottom: 30px;
+}
+.feature-section i {
+  color: #178841;
+  margin-bottom: 10px;
+}
+
+/* Scoped styles for login page form centering */
+#login-page .login-form-wrapper {
+  /* Use Flexbox to center content within this wrapper */
+  display: flex;
+  justify-content: center;  /* center horizontally */
+  align-items: center;      /* center vertically */
+  min-height: calc(100vh - 120px); /* Adjust this value if needed to account for your nav and footer heights */
+  padding: 20px;  /* optional, for spacing */
+}
+
+/* Existing .form-container rules remain for styling the form itself */
+/* (No changes needed here if .form-container styles look good) */
+
+/* Form Box Styling */
+.form-box {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+
+  border-radius: 8px; /* Rounded corners */
+  background-color: #fff; /* White background */
+
+}
+
+/* Center the form title */
+.form-box h4 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333; /* Darker text color */
+}
+
+/* Adjust input fields */
+.input-field input {
+  border: 1px solid #ccc !important; /* Add a border to inputs */
+  border-radius: 5px !important; /* Rounded corners for inputs */
+  padding: 10px;
+  font-size: 1rem;
+}
+
+/* Adjust the submit button */
+.btn.submit-btn {
+  width: 100%; /* Full-width button */
+  background-color: #178841 !important; /* Primary color */
+  color: #fff !important;
+  font-size: 1rem;
+  padding: 3px;
+  border-radius: 4px;
+}
+
+/* Google login button */
+.google-login-btn {
+  width: 100%; /* Full-width button */
+  margin-top: 10px;
+}
+
+/* Center the "Don't have an account" text */
+.center-align p {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #555;
+}
+.btn.submit-btn:hover {
+  background-color: #03162c !important; /* Slightly darker shade */
+}
+
+.input-field {
+  margin-bottom: 20px;
+}
+
+.custom-btn {
+  
+  background-color: #178841 !important; /* Button background color */
+  color: #ffffff !important; /* Text color */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px 20px; /* Adjust padding for spacing */
+  font-size: 1rem; /* Font size */
+  line-height: 1; /* Ensures text is vertically centered */
+  text-align: center; /* Centers text horizontally */
+  display: inline-block; /* Ensures proper button rendering */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+/* Add hover effect */
+.custom-btn:hover {
+  background-color: #45a049 !important; /* Slightly darker shade for hover */
+}
+
+/* notifications dropdown styling */
+#notifDropdown {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* notification items */
+#notifDropdown li > .notif-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+}
+#notifDropdown li > .notif-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* divider between items */
+#notifDropdown li.divider {
+  margin: 0;
+  opacity: 0.3;
+}
+
+/* no‐notifications placeholder */
+#notifDropdown li.no-notifs {
+  text-align: center;
+  padding: 1rem;
+  color: #777;
+  font-style: italic;
+}
+
+/* badge styling (optional tweak) */
+#notification-count.new.badge {
+  background-color: #e53935;  /* red */
+  color: white;
+  font-weight: bold;
+}

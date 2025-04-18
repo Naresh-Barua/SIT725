@@ -120,7 +120,7 @@ describe('Tasks API (Admin CRUD)', () => {
 const { expect } = require('chai');
 const { isFutureDate } = require('../public/js/dateUtils');  // Adjust the path if needed
 
-describe('isFutureDate', () => {
+describe('Admin CRUD (isFutureDate)', () => {
   it('should return true for a date in the future', () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
