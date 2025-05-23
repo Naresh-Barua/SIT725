@@ -23,5 +23,5 @@ http://localhost:3000
 Expected response: 
 {
   "name": "Naresh Barua",
-  "studentId": "5225123878"
+  "studentId": "s225123878"
 }
