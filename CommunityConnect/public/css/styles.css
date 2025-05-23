@@ -1,0 +1,555 @@
+/* Basic Reset */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fafafa;
+}
+
+
+.card .dropdown-trigger {
+  position: absolute !important;
+  top: 0.5rem !important;
+  right: 0.5rem !important;
+  margin: 0 !important;
+  z-index: 10 !important;
+}
+
+/* Flex wrappers for forms */
+.login-form-wrapper,
+.register-form-wrapper {
+  flex: 1;
+}
+
+/* Header and Navigation Styling */
+header, nav.nav-wrapper {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+  padding: 2rem 0;
+  text-align: center;
+  position: relative;
+}
+
+/* Top Right Icons Styling */
+.top-right-icons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* Notification Bell Icon */
+.notification-icon {
+  margin-right: 20px;
+  color: white; /* Make the bell icon white */
+  font-size: 24px;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -4px;
+  right: 0px;
+  background: red;
+  color: white;
+  font-size: 10px;
+  border-radius: 30%;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  line-height: 16px;
+  display: none; /* hidden by default */
+}
+
+/* Logout Button */
+.logout-icon {
+  color: white;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  text-transform: none;
+}
+
+.logout-icon i.material-icons {
+  margin-right: 5px;
+}
+
+/* Header Text Styling */
+header h2 {
+  font-weight: 700;
+  margin-top: 0.2rem;
+}
+
+/* Form Section Styling */
+.form-section {
+  flex: 1;
+  padding: 3rem 1rem;
+}
+
+/* Form Box Styling */
+.form-box {
+  max-width: 500px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Field Styling */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  border-radius: 4px;
+}
+
+/* Submit Button Styling */
+.submit-btn {
+  width: 100%;
+  background-color: #26a69a;
+}
+
+.submit-btn:hover {
+  background-color: #00796b;
+}
+
+/* Google Login Button */
+.google-btn {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Error Message Box Styling */
+.error-box,
+#login-error {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  color: #d32f2f;
+  background-color: #ffebee;
+  font-size: 14px;
+}
+
+/* Headings Styling */
+h4.center-align,
+h5.center-align {
+  margin-bottom: 20px;
+}
+
+/* Footer Styling */
+.page-footer {
+  background-color: #26a69a;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  margin-top: auto;
+}
+
+/* Landing Page Intro Section */
+.intro {
+  flex: 1;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+/* Landing Page Buttons Styling */
+.btn-large {
+  margin: 1rem;
+}
+
+/* Dashboard Layout Styling */
+.row {
+  margin: 0;
+}
+
+#my-task-list, #worker-task-list {
+  padding: 10px;
+}
+
+/* Task Filters and Buttons */
+#filter_input {
+  border-radius: 4px;
+}
+
+.custom-btn {
+  background-color: #26a69a;
+  width: 100%;
+}
+
+.custom-btn:hover {
+  background-color: #00796b;
+}
+
+/* Go Back Button in Header */
+.back-btn {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: black;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  text-transform: none;
+}
+
+.back-btn i.material-icons {
+  margin-right: 4px;
+}
+
+.task-section {
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.ongoing-tasks {
+  background-color: #e3f2fd;
+  border: 2px solid #90caf9;
+}
+
+.available-tasks {
+  background-color: #f1f8e9;
+  border: 2px solid #c5e1a5;
+}
+
+
+/* wrap each section in a .task-section */
+.task-section {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.task-section .section-header {
+  padding: 1rem 1.5rem;
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+/* two distinct headers */
+.ongoing-tasks .section-header {
+  background: linear-gradient(135deg, #64b5f6, #2196f3);
+}
+.available-tasks .section-header {
+  background: linear-gradient(135deg, #aed581, #8bc34a);
+}
+
+/* push the cards slightly up under the header */
+.ongoing-tasks .card,
+.available-tasks .card {
+  margin: 1rem 1.5rem 1.5rem;
+}
+
+
+.card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+
+.badge {
+  display: inline-block;
+  font-size: .75rem;
+  padding: .2em .6em;
+  border-radius: 999px;
+  color: #fff;
+  margin-right: .5rem;
+}
+.badge--due    { background: #50cfef; } 
+.badge--open   { background: #25db95; } 
+/* .badge--working{ background: #941c1c; } 
+.badge--done   { background: #66BB6A; }  */
+
+.card-content p { line-height: 1.5; margin: .5em 0; }
+.card-title { font-size: 1.3rem; font-weight: 500; }
+@media (min-width: 992px) {
+  #worker-task-list .col.l4,
+  #my-task-list      .col.l4 {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
+}
+
+.task-section { opacity: 0; animation: fadeIn 0.5s forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
+
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ccc;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-right: .75rem;
+  flex-shrink: 0;
+}
+
+
+.hiring-tasks .section-header {
+  background: linear-gradient(135deg, #aed581, #8bc34a);
+  color: #aed581;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.3rem;
+}
+
+/* shrink the button a bit to match the header height */
+.hiring-tasks .btn-small {
+  font-size: 0.85rem;
+  padding: 0 0.75rem;
+  height: 32px;
+  line-height: 32px;
+}
+
+/* give the listing area a little breathing room */
+.hiring-tasks #admin-task-list {
+  padding: 1rem;
+}
+
+/* Center content & limit width */
+.section-wrapper {
+  max-width: 1200px;
+  margin: 2rem auto;      /* vertical spacing + auto-center */
+  padding: 0 1rem;
+}
+
+/* Re-use the green header look, but give it a bit more padding & radius */
+.task-section .section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .75rem 1rem;
+  border-radius: 4px 4px 0 0;
+  color: #fff;
+}
+
+/* Make the button a little tighter */
+.task-section .btn-small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+/* Give the whole panel a soft card background + border */
+.hiring-tasks {
+  background: #f9f9f9;
+  border: 1px solid #c8e6c9;      /* match your green accent */
+  border-radius: 4px;
+}
+
+
+/* ─── Shared “pill” badge styles ───────────────────────── */
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+
+/* status pills */
+.badge--open {
+  background-color: #2ecc71; /* same green */
+  color: white;
+}
+.badge--due {
+  background-color: #5bc0de; /* same light-blue */
+  color: white;
+}
+
+/* ─── Circular avatar “initial” ───────────────────────── */
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.85rem;
+  margin-right: 0.75rem;
+}
+
+/* ─── Tidy up the admin card header ────────────────────── */
+.task-card-admin .card-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+
+
+/* Header Container */
+.header-container {
+  background: linear-gradient(to right, #6a11cb, #2575fc); /* Blue gradient */
+  padding: 20px 0;
+  color: white;
+}
+
+/* Flexbox for Header Content */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Header Text Styling */
+.header-text h4 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.header-text h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* Header Links Styling */
+.header-links a {
+  margin-left: 15px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.header-links a:hover {
+  text-decoration: underline;
+}
+
+/* Hero (full-screen) */
+.hero-image {
+  background: url('../images/hero-bg.jpg') center/cover no-repeat;
+  height: 250vh;
+}
+.hero-headline {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+.hero-sub {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Benefits cards */
+
+.benefits .card-image img {
+  height: 180px;
+  object-fit: cover;
+}
+.benefits .card-title {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .hero-headline { font-size: 2rem; }
+  .hero-sub { font-size: 1rem; }
+  .carousel .carousel-item img { height: 250px; }
+}
+
+.benefits .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+/* ─── Fix comment layout inside cards ───────────────────────────────────── */
+.card .card-action {
+  /* override inline styles from scripts.js */
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem;
+  flex-wrap: nowrap !important;
+  white-space: nowrap;
+}
+
+/* style the hidden panel */
+.comments-section {
+  display: none;                /* stays hidden until you toggle */
+  width: 100%;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* constrain the list */
+.comment-list {
+  max-height: 120px;
+  overflow-y: auto;
+  margin-bottom: 0.75rem;
+}
+
+/* form layout */
+.comment-form {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.comment-input {
+  flex: 1;
+  margin-right: 0.5rem;
+}
+
+/* keep icons aligned */
+.comment-toggle i,
+.comment-form i {
+  vertical-align: middle;
+}
+
+/* ─── Force each ongoing‐task column to full width ───────────────────────── */
+.ongoing-tasks #my-task-list {
+  display: flex !important;          /* make the row a flex container */
+  flex-direction: column !important; /* stack cards vertically */
+  gap: 0rem !important;              /* space between cards */
+  align-items: center !important;  /* ensure left-alignment */
+}
+
+.ongoing-tasks #my-task-list .col {
+  width: 90% !important;           /* let content size the card */
+  max-width: 90% !important;      /* same as your Hiring Dashboard cards */
+  margin: 0 !important;             /* flush to the left padding of the panel */
+}
+
+/* ─── Constrain and center the Ongoing-Tasks panel ───────────────────── */
+.ongoing-tasks {          /* for the back button */
+  width: 100% !important;           /* let content width define size */
+  max-width: 95% !important;      /* match your card width + panel padding */
+  margin: 2 auto !important;       /* center the panel */
+  border-radius: 8px !important; /* same as your Hiring Dashboard */
+  padding: 1rem 0.5rem !important;  /* adjust top/bottom and side padding */
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CommunityConnect - Workers Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="/pages/landing.html" class="back-btn">
+      <i class="material-icons">arrow_back</i> Go Back
+    </a>
+    <h2>Workers Dashboard</h2>
+    <p>Manage your tasks and view available tasks</p>
+    <!-- Top Right Icons -->
+    <div class="top-right-icons">
+      <!-- Notification Bell -->
+      <div class="notification-wrapper" style="position: relative; display: inline-block;">
+        <a href="#!" class="notification-icon">
+          <i class="material-icons">notifications</i>
+          <span id="notification-count" class="notification-badge">0</span>
+        </a>
+        <div id="notification-modal-placeholder"></div>
+      </div>      
+      <!-- Logout Button -->
+      <a href="#!" id="logoutBtn" class="logout-icon">
+      <i class="material-icons">exit_to_app</i> Logout
+      </a>
+      <span id="navWelcome" class="nav-welcome" style="margin-left:1rem; font-weight:500;">
+        <!-- will be replaced by script -->
+      </span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="row">
+    <!-- Left Column: Ongoing Tasks -->
+    <div class="col s12 m5">
+      <div class="task-section ongoing-tasks">
+        <div class="section-header">My Ongoing Tasks</div>
+        <div id="my-task-list" class="row">
+          <!-- Tasks assigned to me will appear here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Available Tasks -->
+    <div class="col s12 m7">
+      <div class="task-section available-tasks">
+        <div class="section-header">Available Tasks to Apply</div>
+        <div id="worker-task-list" class="row">
+          <!-- Worker tasks will load here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Footer -->
+<footer class="page-footer grey lighten-4">
+  <div class="container center black-text">
+    © 2025 CommunityConnect • Made with ❤️ for your local area
+  </div>
+</footer>
+
+  <!-- JavaScript -->
+   <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="../js/scripts.js"></script>
+</body>
+</html>

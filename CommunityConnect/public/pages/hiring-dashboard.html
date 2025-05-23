@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hiring Dashboard - CommunityConnect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="/pages/landing.html" class="back-btn">
+      <i class="material-icons">arrow_back</i> Go Back
+    </a>
+    <h2>Hiring Dashboard</h2>
+    <p>Hire someone at CommunityConnect</p>
+    <!-- Top Right Icons -->
+    <div class="top-right-icons">
+      <!-- Notification Bell -->
+      <div class="notification-wrapper" style="position: relative; display: inline-block;">     
+        <a href="#!" class="notification-icon">
+          <i class="material-icons">notifications</i>
+          <span id="notification-count" class="notification-badge">0</span>
+        </a>
+        <div id="notification-modal-placeholder"></div>
+      </div>          
+      <!-- Logout Button -->
+      <a href="#!" id="logoutBtn" class="logout-icon">
+       <i class="material-icons">exit_to_app</i> Logout
+      </a>
+      <span id="navWelcome" class="nav-welcome" style="margin-left:1rem; font-weight:500;">
+        <!-- will be replaced by script -->
+      </span>
+    </div>
+  </header>
+
+<!-- Main Content -->
+<div class="row">
+  <div class="col s12">
+    <div class="task-section available-tasks">
+      <!-- Section header -->
+      <div class="section-header">
+        Manage Your Tasks
+        <a href="#modalAddTask"
+        class="waves-effect waves-light btn-small right modal-trigger"
+        style="margin-top:-6px">
+       Add Task
+     </a>
+      </div>
+      <!-- Task cards grid -->
+      <div id="admin-task-list" class="row">
+        <!-- cards get injected here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Modal Structure -->
+  <div id="modalAddTask" class="modal">
+    <div class="modal-content">
+      <h4>Add Task</h4>
+      <form id="addTaskForm" class="col s12">
+        <div class="input-field">
+          <input id="task_title" type="text" required>
+          <label for="task_title">Title</label>
+        </div>
+        <div class="input-field">
+          <textarea id="task_description" class="materialize-textarea" required></textarea>
+          <label for="task_description">Description</label>
+        </div>
+        <div class="input-field">
+          <input id="task_dueDate" type="date" required>
+          <label for="task_dueDate">Due Date</label>
+        </div>
+        <div class="input-field">
+          <input id="task_assignedTo" type="text">
+          <label for="task_assignedTo">Assigned To (Email or Username)</label>
+        </div>
+        <div id="taskError" class="red-text" style="display:none; margin-bottom:1rem;"></div>
+
+        <button type="submit" class="btn waves-effect waves-light custom-btn">Submit</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
+    </div>
+  </div>
+
+<!-- Footer -->
+<footer class="page-footer grey lighten-4">
+  <div class="container center black-text">
+    © 2025 CommunityConnect • Made with ❤️ for your local area
+  </div>
+</footer>
+
+  <!-- JavaScript -->
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="../js/scripts.js"></script>
+</body>
+</html>
