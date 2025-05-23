@@ -121,16 +121,17 @@ exports.updateTask = async (req, res) => {
       return res.status(404).json({ error: 'Task not found.' });
     }
 
-    // 6) Emit the updated task (including its title) for real‑time clients
+    // 6) Log to terminal and emit exactly once
+    console.log(`🔄 [UPDATE] ${updatedTask.title} (ID: ${updatedTask._id})`);
     const io = req.app.get('io');
     io && io.emit('task:updated', updatedTask);
 
     // 7) Return the updated document
-    res.json(updatedTask);
+    return res.json(updatedTask);
 
   } catch (err) {
     console.error('Failed to update task:', err);
-    res.status(500).json({
+    return res.status(500).json({
       error: 'Failed to update task.',
       details: err.message
     });
