@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  # — Run service "mongo" —
+  mongo:
+    image: mongo:6.0                   # official MongoDB image
+    container_name: community-mongo    # pick a stable name
+    restart: unless-stopped
+    ports:
+      - "27017:27017"                  # (optional) expose so host tools can connect
+    volumes:
+      - mongo-data:/data/db            # persist data across container restarts
+    networks:
+      - community-network
+
+  # — Run service "app" —
+  app:
+    build: .                           # build from local Dockerfile
+    container_name: community-app      # pick a stable name
+    restart: unless-stopped
+    ports:
+      - "3000:3000"                    # maps host 3000 → container 3000
+    env_file:
+      - .env                           # loads MONGODB_URI, SESSION_SECRET, etc.
+    depends_on:
+      - mongo                          # ensures "mongo" starts before "app"
+    networks:
+      - community-network
+
+volumes:
+  mongo-data: {}                       # named volume to store MongoDB data
+
+networks:
+  community-network:                   # Docker will create this bridge network
+    driver: bridge

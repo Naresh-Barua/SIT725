@@ -5,7 +5,7 @@ const Task = require('./models/taskModel');
 const Notification = require('./models/notificationModel');
 const Comment = require('./models/commentModel');
 
-mongoose.connect('mongodb://localhost:27017/CTB')
+mongoose.connect('mongodb://mongo:27017/CTB')
   .then(async () => {
     // Clear previous data
     await User.deleteMany({});
