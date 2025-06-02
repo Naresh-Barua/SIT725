@@ -2,11 +2,11 @@
 
 1. **Build the image**  
    ```bash
-   docker build -t communityconnect .
+     docker-compose build
 
 2. Run the container
    ```bash
-   docker run -d \ --name cc-app \  --env-file .env \ -p 3000:3000 \ communityconnect
+      docker-compose up -d
 
 --env-file .env loads your Mongo/Google/EMAIL vars
 
